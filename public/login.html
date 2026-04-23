@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | BookSphere</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* =========================
+   PAGE
+========================= */
+.login-section{
+    min-height:82vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:60px 20px;
+}
+
+/* =========================
+   BOX
+========================= */
+.login-box{
+    width:100%;
+    max-width:520px;
+    background:#ffffff;
+    padding:42px;
+    border-radius:24px;
+    box-shadow:0 16px 35px rgba(0,0,0,0.08);
+}
+
+.login-box h1{
+    text-align:center;
+    font-size:48px;
+    color:#7a4e1d;
+    margin-bottom:14px;
+    line-height:1.1;
+}
+
+.login-box p{
+    text-align:center;
+    color:#666;
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:32px;
+}
+
+/* =========================
+   FORM
+========================= */
+.form-group{
+    margin-bottom:18px;
+}
+
+.login-box input{
+    width:100%;
+    padding:16px 18px;
+    border:1px solid #d8c8a8;
+    border-radius:12px;
+    font-size:16px;
+    background:#fff;
+    outline:none;
+    transition:.25s;
+}
+
+.login-box input:focus{
+    border-color:#7a4e1d;
+    box-shadow:0 0 0 4px rgba(122,78,29,0.08);
+}
+
+/* =========================
+   BUTTON
+========================= */
+.login-box .btn{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+    padding:16px;
+    margin-top:8px;
+    border-radius:12px;
+}
+
+/* =========================
+   SIGNUP
+========================= */
+.signup-text{
+    margin-top:26px;
+    text-align:center;
+    color:#666;
+    font-size:17px;
+}
+
+.signup-text a{
+    color:#7a4e1d;
+    font-weight:700;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:768px){
+
+.login-section{
+    padding:30px 15px;
+}
+
+.login-box{
+    padding:28px;
+}
+
+.login-box h1{
+    font-size:36px;
+}
+
+.login-box p{
+    font-size:16px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</nav>
+
+<a href="login.html" class="login-btn active">Login</a>
+
+</header>
+
+
+<!-- LOGIN -->
+<section class="login-section">
+
+<div class="login-box">
+
+<h1>Welcome Back</h1>
+
+<p>
+Login to continue exploring books, rankings and your personal library.
+</p>
+
+<form id="loginForm">
+
+<div class="form-group">
+<input id="loginEmail" type="email" placeholder="Email Address" required>
+</div>
+
+<div class="form-group">
+<input id="loginPassword" type="password" placeholder="Password" required>
+</div>
+
+<button type="submit" class="btn">Login</button>
+
+</form>
+
+<div class="signup-text">
+New here? <a href="signup.html">Create an Account</a>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</div>
+
+<div class="footer-box">
+<h3>Support</h3>
+<a href="#">Help Center</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms</a>
+</div>
+
+<div class="footer-box">
+<h3>Connect</h3>
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+<a href="#">Twitter</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+
+</footer>
+
+<script src="js/auth.js"></script>
+
+</body>
+</html>

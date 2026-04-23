@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BookSphere | Upload Book</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+body{
+    background:#f8f5ee;
+}
+
+/* =========================
+   WRAPPER
+========================= */
+.upload-wrap{
+    width:92%;
+    max-width:1100px;
+    margin:45px auto 70px;
+}
+
+/* =========================
+   HERO
+========================= */
+.upload-hero{
+    background:linear-gradient(135deg,#fffaf0,#f3ece0);
+    border-radius:24px;
+    padding:36px;
+    margin-bottom:28px;
+}
+
+.upload-hero h1{
+    font-size:40px;
+    color:#5c3b13;
+    margin-bottom:10px;
+}
+
+.upload-hero p{
+    color:#666;
+    line-height:1.8;
+    font-size:17px;
+}
+
+/* =========================
+   FORM BOX
+========================= */
+.upload-box{
+    background:#fff;
+    border-radius:24px;
+    padding:34px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    margin-bottom:30px;
+}
+
+/* =========================
+   GRID
+========================= */
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.full{
+    grid-column:1 / -1;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.form-grid input,
+.form-grid textarea{
+    width:100%;
+    padding:15px 16px;
+    border:1px solid #d8c8a8;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+    background:#fff;
+    color:#333;
+    font-family:inherit;
+    transition:.25s;
+}
+
+.form-grid input:focus,
+.form-grid textarea:focus{
+    border-color:#7a4e1d;
+    box-shadow:0 0 0 4px rgba(122,78,29,.08);
+}
+
+textarea{
+    min-height:160px;
+    resize:vertical;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.upload-box .btn{
+    border:none;
+    cursor:pointer;
+    min-width:220px;
+}
+
+.secondary-btn{
+    background:#f4ede1;
+    color:#7a4e1d;
+    border:none;
+    padding:14px 22px;
+    border-radius:12px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* =========================
+   PREVIEW
+========================= */
+.preview-box{
+    background:#fff;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.preview-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.preview-top h2{
+    color:#5c3b13;
+}
+
+.book-slider{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    scroll-behavior:smooth;
+}
+
+.book-slider::-webkit-scrollbar{
+    display:none;
+}
+
+.book-card{
+    min-width:230px;
+    background:#fffaf0;
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 8px 18px rgba(0,0,0,.05);
+}
+
+.book-card img{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:14px;
+    margin-bottom:12px;
+}
+
+.book-card h3{
+    font-size:18px;
+    margin-bottom:6px;
+    color:#333;
+}
+
+.book-card p{
+    color:#777;
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.delete-book{
+    width:100%;
+    border:none;
+    padding:10px;
+    border-radius:10px;
+    background:#7a4e1d;
+    color:#fff;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.empty{
+    color:#777;
+    padding:15px 0;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:768px){
+
+.form-grid{
+    grid-template-columns:1fr;
+}
+
+.upload-hero h1{
+    font-size:32px;
+}
+
+.upload-box,
+.preview-box{
+    padding:24px;
+}
+
+.actions{
+    flex-direction:column;
+}
+
+.upload-box .btn,
+.secondary-btn{
+    width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</nav>
+
+<a href="admin.html" class="login-btn">Dashboard</a>
+
+</header>
+
+
+<div class="upload-wrap">
+
+<!-- HERO -->
+<section class="upload-hero">
+
+<h1>Upload New Book</h1>
+
+<p>
+Add your latest title. Once submitted, it will appear in the
+<strong>Your Books</strong> section on your dashboard.
+</p>
+
+</section>
+
+
+<!-- FORM -->
+<section class="upload-box">
+
+<form id="uploadForm">
+
+<div class="form-grid">
+
+<div>
+<input type="text" id="title" placeholder="Book Title" required>
+</div>
+
+<div>
+<input type="text" id="genre" placeholder="Genre" required>
+</div>
+
+<div>
+<input type="date" id="year" required>
+</div>
+
+<div>
+<input type="url" id="image" placeholder="Cover Image URL" required>
+</div>
+
+<div class="full">
+<textarea id="desc" placeholder="Short Description"></textarea>
+</div>
+
+<div class="full actions">
+<button type="submit" class="btn">Upload Book</button>
+<button type="reset" class="secondary-btn">Reset Form</button>
+</div>
+
+</div>
+
+</form>
+
+</section>
+
+
+<!-- PREVIEW -->
+<section class="preview-box">
+
+<div class="preview-top">
+<h2>Recently Added Books</h2>
+<button class="secondary-btn" onclick="loadBooks()">Refresh</button>
+</div>
+
+<div class="book-slider" id="bookSlider"></div>
+
+</section>
+
+</div>
+
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</div>
+
+<div class="footer-box">
+<h3>Support</h3>
+<a href="#">Help Center</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms</a>
+</div>
+
+<div class="footer-box">
+<h3>Connect</h3>
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+<a href="#">Twitter</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   LOAD BOOKS
+========================= */
+async function loadBooks(){
+
+const slider = document.getElementById("bookSlider");
+
+slider.innerHTML = "<p class='empty'>Loading books...</p>";
+
+try{
+
+const res = await fetch("/api/books");
+const books = await res.json();
+
+slider.innerHTML = "";
+
+if(books.length === 0){
+slider.innerHTML = "<p class='empty'>No books uploaded yet.</p>";
+return;
+}
+
+books.forEach(book => {
+
+slider.innerHTML += `
+<div class="book-card">
+
+<img src="${book.image}"
+onerror="this.src='https://via.placeholder.com/230x280?text=No+Cover'">
+
+<h3>${book.title}</h3>
+
+<p>${book.year.slice(0,4)} • ${book.genre}</p>
+
+<button class="delete-book"
+onclick="deleteBook(${book.id})">
+Delete
+</button>
+
+</div>
+`;
+
+});
+
+}catch(error){
+
+slider.innerHTML = "<p class='empty'>Unable to load books.</p>";
+
+}
+
+}
+
+/* =========================
+   UPLOAD BOOK
+========================= */
+document.getElementById("uploadForm")
+.addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const data = {
+title: document.getElementById("title").value.trim(),
+genre: document.getElementById("genre").value.trim(),
+year: document.getElementById("year").value,
+image: document.getElementById("image").value.trim(),
+desc: document.getElementById("desc").value.trim()
+};
+
+try{
+
+const res = await fetch("/api/books/add",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify(data)
+});
+
+const result = await res.json();
+
+alert(result.message);
+
+if(result.success){
+this.reset();
+loadBooks();
+}
+
+}catch(error){
+
+alert("Server connection failed.");
+
+}
+
+});
+
+/* =========================
+   DELETE BOOK
+========================= */
+async function deleteBook(id){
+
+if(!confirm("Delete this book?")) return;
+
+try{
+
+const res = await fetch("/api/books/" + id,{
+method:"DELETE"
+});
+
+const result = await res.json();
+
+alert(result.message);
+
+loadBooks();
+
+}catch(error){
+
+alert("Delete failed.");
+
+}
+
+}
+
+/* INIT */
+loadBooks();
+
+</script>
+
+</body>
+</html>

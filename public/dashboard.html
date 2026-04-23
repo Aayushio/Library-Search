@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | BookSphere</title>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<header>
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<a href="login.html" class="login-btn">Logout</a>
+</header>
+
+
+<!-- HERO -->
+<section class="hero-carousel">
+
+<div class="carousel-container">
+
+<div class="hero-track" id="heroTrack">
+
+<div class="hero-slide active">
+<img src="https://covers.openlibrary.org/b/id/10521270-L.jpg">
+<div class="hero-content">
+<h1>The Great Adventure</h1>
+<p>Lose yourself in timeless stories.</p>
+<a href="book.html?id=OL82563W" class="btn">Read Now</a>
+</div>
+</div>
+
+<div class="hero-slide">
+<img src="https://covers.openlibrary.org/b/id/240726-L.jpg">
+<div class="hero-content">
+<h1>Pride & Prejudice</h1>
+<p>Classic romance masterpiece.</p>
+<a href="#" class="btn">Read Now</a>
+</div>
+</div>
+
+<div class="hero-slide">
+<img src="https://covers.openlibrary.org/b/id/12687884-L.jpg">
+<div class="hero-content">
+<h1>Atomic Habits</h1>
+<p>Build better habits daily.</p>
+<a href="#" class="btn">Read Now</a>
+</div>
+</div>
+
+</div>
+
+<button class="nav prev" onclick="moveSlide(-1)">❮</button>
+<button class="nav next" onclick="moveSlide(1)">❯</button>
+
+<div class="dots">
+<span onclick="goSlide(0)" class="dot active"></span>
+<span onclick="goSlide(1)" class="dot"></span>
+<span onclick="goSlide(2)" class="dot"></span>
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- BOOK ROWS -->
+<section class="dashboard-section">
+
+<h2>Trending Books</h2>
+<div class="book-row" id="trendingBooks"></div>
+
+<h2>Recommended For You</h2>
+<div class="book-row" id="recommendedBooks"></div>
+
+<h2>Top Authors</h2>
+<div class="book-row" id="topAuthors"></div>
+
+<h2>New Releases</h2>
+<div class="book-row" id="newBooks"></div>
+
+</section>
+
+
+<footer class="footer">
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+</footer>
+
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

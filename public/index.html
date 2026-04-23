@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BookSphere | Home</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* ---------- HOME PAGE ONLY ---------- */
+
+.hero{
+    text-align:center;
+    padding:90px 20px 60px;
+}
+
+.hero h1{
+    font-size:58px;
+    color:#7a4e1d;
+    margin-bottom:18px;
+}
+
+.hero p{
+    max-width:760px;
+    margin:auto;
+    color:#666;
+    font-size:19px;
+    line-height:1.8;
+    margin-bottom:32px;
+}
+
+.search-form{
+    max-width:760px;
+    margin:35px auto 0;
+    display:flex;
+    gap:12px;
+    background:#fff;
+    padding:10px;
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+.search-form input{
+    border:none;
+    outline:none;
+    flex:1;
+    font-size:16px;
+    background:transparent;
+}
+
+/* sections */
+
+.showcase{
+    width:92%;
+    max-width:1400px;
+    margin:50px auto;
+}
+
+.section-box{
+    margin-bottom:60px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+}
+
+.section-head h2{
+    font-size:34px;
+    color:#5c3b13;
+}
+
+/* slider wrapper */
+
+.slider-wrap{
+    position:relative;
+}
+
+.book-row,
+.author-row{
+    display:flex;
+    gap:22px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    scroll-behavior:smooth;
+    padding-bottom:10px;
+}
+
+.book-row::-webkit-scrollbar,
+.author-row::-webkit-scrollbar{
+    display:none;
+}
+
+/* arrows */
+
+.slide-btn{
+    position:absolute;
+    top:45%;
+    transform:translateY(-50%);
+    width:46px;
+    height:46px;
+    border:none;
+    border-radius:50%;
+    background:#7a4e1d;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+    z-index:5;
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+}
+
+.slide-btn:hover{
+    background:#5c3b13;
+}
+
+.left-btn{
+    left:-18px;
+}
+
+.right-btn{
+    right:-18px;
+}
+
+/* cards */
+
+.book-card,
+.author-card{
+    background:#fff;
+    border-radius:18px;
+    padding:16px;
+    text-align:center;
+    color:#222;
+    box-shadow:0 8px 22px rgba(0,0,0,.05);
+    transition:.25s ease;
+}
+
+.book-card:hover,
+.author-card:hover{
+    transform:translateY(-6px);
+}
+
+.book-card{
+    min-width:200px;
+    max-width:200px;
+}
+
+.book-card img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:14px;
+    margin-bottom:12px;
+}
+
+.author-card{
+    min-width:220px;
+    max-width:220px;
+}
+
+.author-card img{
+    width:130px;
+    height:130px;
+    object-fit:cover;
+    border-radius:50%;
+    margin:0 auto 18px;
+}
+
+/* mobile */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:40px;
+}
+
+.search-form{
+    flex-direction:column;
+}
+
+.section-head h2{
+    font-size:26px;
+}
+
+.slide-btn{
+    width:38px;
+    height:38px;
+    font-size:18px;
+}
+
+.left-btn{
+    left:-10px;
+}
+
+.right-btn{
+    right:-10px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</nav>
+
+<a href="login.html" class="login-btn">Login</a>
+
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+
+<h1>Discover Books Smarter</h1>
+
+<p>
+Search books, journals, notes and timeless literature through one modern platform built for readers, students and authors.
+</p>
+
+<a href="dashboard.html" class="btn">Get Started</a>
+
+<form class="search-form">
+
+<input type="text" placeholder="Search by title, author or keyword..." required>
+
+<button type="submit" class="btn">Search</button>
+
+</form>
+
+</section>
+
+
+<!-- SHOWCASE -->
+<section class="showcase">
+
+<!-- BOOKS -->
+<div class="section-box">
+
+<div class="section-head">
+<h2>Classic Masterpieces</h2>
+</div>
+
+<div class="slider-wrap">
+
+<button class="slide-btn left-btn" onclick="slideRow('classicBooks',-300)">❮</button>
+
+<div class="book-row" id="classicBooks"></div>
+
+<button class="slide-btn right-btn" onclick="slideRow('classicBooks',300)">❯</button>
+
+</div>
+
+</div>
+
+
+<!-- AUTHORS -->
+<div class="section-box">
+
+<div class="section-head">
+<h2>Famous Authors</h2>
+</div>
+
+<div class="slider-wrap">
+
+<button class="slide-btn left-btn" onclick="slideRow('authorRow',-300)">❮</button>
+
+<div class="author-row" id="authorRow"></div>
+
+<button class="slide-btn right-btn" onclick="slideRow('authorRow',300)">❯</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+
+</footer>
+
+<script src="js/main.js"></script>
+
+<script>
+function slideRow(id,amount){
+    document.getElementById(id).scrollLeft += amount;
+}
+</script>
+
+</body>
+</html>

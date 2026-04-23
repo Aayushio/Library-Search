@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1776876384730,
+    "name": "SARNSH",
+    "email": "SAR@GMAIL.COM",
+    "password": "JAI HO",
+    "role": "author"
+  },
+  {
+    "id": 1776876499784,
+    "name": "AAYUSH",
+    "email": "AA@GMAIL.COM",
+    "password": "AA@GMAIL.COM",
+    "role": "reader"
+  }
+]

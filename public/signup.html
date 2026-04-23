@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up | BookSphere</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+.signup-section{
+    min-height:78vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:50px 20px;
+}
+
+.signup-box{
+    width:100%;
+    max-width:560px;
+    background:#fff;
+    padding:38px;
+    border-radius:22px;
+    box-shadow:0 10px 28px rgba(0,0,0,0.08);
+}
+
+.signup-box h1{
+    text-align:center;
+    color:#7a4e1d;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.signup-box p{
+    text-align:center;
+    color:#666;
+    margin-bottom:26px;
+}
+
+.toggle-bar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:#f7eee1;
+    padding:6px;
+    border-radius:14px;
+    margin-bottom:28px;
+}
+
+.toggle-btn{
+    padding:12px;
+    border:none;
+    background:transparent;
+    font-weight:700;
+    border-radius:10px;
+    cursor:pointer;
+    color:#7a4e1d;
+}
+
+.toggle-btn.active{
+    background:#7a4e1d;
+    color:#fff;
+}
+
+.form-box{
+    display:none;
+}
+
+.form-box.active{
+    display:block;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+.form-group textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+.btn-submit{
+    width:100%;
+    border:none;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.bottom-text{
+    text-align:center;
+    margin-top:22px;
+    color:#666;
+}
+
+.bottom-text a{
+    color:#7a4e1d;
+    font-weight:700;
+}
+
+@media(max-width:768px){
+
+.signup-box{
+    padding:28px;
+}
+
+.signup-box h1{
+    font-size:32px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</nav>
+
+<a href="login.html" class="login-btn">Login</a>
+
+</header>
+
+
+<section class="signup-section">
+
+<div class="signup-box">
+
+<h1>Create Account</h1>
+<p>Join BookSphere as Reader or Author</p>
+
+<!-- TOGGLE -->
+<div class="toggle-bar">
+
+<button type="button" class="toggle-btn active" onclick="showForm('reader')">
+Reader
+</button>
+
+<button type="button" class="toggle-btn" onclick="showForm('author')">
+Author
+</button>
+
+</div>
+
+
+<!-- READER FORM -->
+<form id="readerForm" class="form-box active">
+
+<div class="form-group">
+<input id="readerName" type="text" placeholder="Full Name" required>
+</div>
+
+<div class="form-group">
+<input id="readerEmail" type="email" placeholder="Email Address" required>
+</div>
+
+<div class="form-group">
+<input id="readerPassword" type="password" placeholder="Password" required>
+</div>
+
+<div class="form-group">
+<input type="text" placeholder="Favorite Genre (Optional)">
+</div>
+
+<button type="submit" class="btn btn-submit">
+Create Reader Account
+</button>
+
+</form>
+
+
+<!-- AUTHOR FORM -->
+<form id="authorForm" class="form-box">
+
+<div class="form-group">
+<input id="authorName" type="text" placeholder="Author Name" required>
+</div>
+
+<div class="form-group">
+<input id="authorEmail" type="email" placeholder="Official Email" required>
+</div>
+
+<div class="form-group">
+<input id="authorPassword" type="password" placeholder="Password" required>
+</div>
+
+<div class="form-group">
+<input type="text" placeholder="Published Genre">
+</div>
+
+<div class="form-group">
+<textarea placeholder="Short Bio / About You"></textarea>
+</div>
+
+<div class="form-group">
+<input type="text" placeholder="Website / Social Link">
+</div>
+
+<button type="submit" class="btn btn-submit">
+Register As Author
+</button>
+
+</form>
+
+
+<div class="bottom-text">
+Already have an account?
+<a href="login.html">Login</a>
+</div>
+
+</div>
+
+</section>
+
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="about.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</div>
+
+<div class="footer-box">
+<h3>Support</h3>
+<a href="#">Help Center</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms</a>
+</div>
+
+<div class="footer-box">
+<h3>Connect</h3>
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+<a href="#">Twitter</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+
+</footer>
+
+<script src="js/auth.js"></script>
+
+<script>
+function showForm(type){
+
+const reader = document.getElementById("readerForm");
+const author = document.getElementById("authorForm");
+const btns = document.querySelectorAll(".toggle-btn");
+
+btns.forEach(btn => btn.classList.remove("active"));
+
+if(type === "reader"){
+reader.classList.add("active");
+author.classList.remove("active");
+btns[0].classList.add("active");
+}else{
+author.classList.add("active");
+reader.classList.remove("active");
+btns[1].classList.add("active");
+}
+
+}
+</script>
+
+</body>
+</html>

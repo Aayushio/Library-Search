@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BookSphere | Author</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* ======================================
+   AUTHOR PAGE
+====================================== */
+
+.author-wrap{
+    width:92%;
+    max-width:1400px;
+    margin:45px auto 60px;
+}
+
+/* HERO */
+
+.author-hero{
+    background:#fff;
+    border-radius:26px;
+    padding:38px;
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:34px;
+    box-shadow:0 12px 28px rgba(0,0,0,.06);
+    margin-bottom:42px;
+}
+
+.author-photo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid #f3e6d1;
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
+
+.author-name{
+    font-size:44px;
+    color:#5c3b13;
+    margin-bottom:14px;
+}
+
+.author-bio{
+    color:#666;
+    line-height:1.9;
+    font-size:16px;
+    margin-bottom:18px;
+    max-width:800px;
+}
+
+.author-pills{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.pill{
+    background:#f8f5ee;
+    color:#7a4e1d;
+    padding:10px 16px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* SECTION */
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+}
+
+.section-head h2{
+    font-size:30px;
+    color:#5c3b13;
+}
+
+.section-head span{
+    color:#777;
+}
+
+/* GRID */
+
+.books-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:22px;
+}
+
+/* CARD */
+
+.book-card{
+    background:#fff;
+    border-radius:20px;
+    padding:16px;
+    text-align:center;
+    box-shadow:0 8px 22px rgba(0,0,0,.05);
+    color:#222;
+    transition:.25s ease;
+}
+
+.book-card:hover{
+    transform:translateY(-6px);
+}
+
+.book-card img{
+    width:100%;
+    height:290px;
+    object-fit:cover;
+    border-radius:14px;
+    margin-bottom:14px;
+}
+
+.book-card h3{
+    font-size:17px;
+    margin-bottom:6px;
+    line-height:1.4;
+}
+
+.book-card p{
+    color:#777;
+    font-size:14px;
+}
+
+.meta{
+    margin-top:8px;
+    color:#999;
+    font-size:13px;
+}
+
+/* STATES */
+
+.loader,
+.empty-state{
+    text-align:center;
+    padding:80px 20px;
+    color:#7a4e1d;
+    font-size:24px;
+    font-weight:700;
+}
+
+.empty-state p{
+    color:#777;
+    font-size:16px;
+    margin-top:10px;
+    font-weight:400;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.author-hero{
+    grid-template-columns:1fr;
+    text-align:center;
+}
+
+.author-photo{
+    margin:auto;
+}
+
+.author-pills{
+    justify-content:center;
+}
+
+}
+
+@media(max-width:768px){
+
+.author-name{
+    font-size:34px;
+}
+
+.section-head{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</nav>
+
+<a href="login.html" class="login-btn">Login</a>
+
+</header>
+
+
+<!-- PAGE -->
+<div class="author-wrap">
+
+<!-- HERO -->
+<section class="author-hero">
+
+<img
+id="authorPhoto"
+class="author-photo"
+src="https://ui-avatars.com/api/?name=Author&size=300&background=f4e7d4&color=7a4e1d&bold=true"
+alt="Author">
+
+<div>
+
+<h1 id="authorName" class="author-name">Loading...</h1>
+
+<p id="authorBio" class="author-bio">
+Fetching author details...
+</p>
+
+<div class="author-pills">
+<div class="pill" id="bookCount">0 Books</div>
+<div class="pill">Verified Author</div>
+<div class="pill">Popular Writer</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BOOKS -->
+<section>
+
+<div class="section-head">
+<h2 id="booksTitle">Books</h2>
+<span id="resultCount"></span>
+</div>
+
+<div id="booksGrid" class="books-grid"></div>
+
+</section>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</div>
+
+<div class="footer-box">
+<h3>Support</h3>
+<a href="#">Help Center</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms</a>
+</div>
+
+<div class="footer-box">
+<h3>Connect</h3>
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+<a href="#">Twitter</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+
+</footer>
+
+
+<!-- REPLACE ONLY THE SCRIPT SECTION AT BOTTOM OF YOUR author.html WITH THIS -->
+
+<script src="js/main.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadAuthorPage();
+});
+
+/* =====================================
+   MAIN
+===================================== */
+
+async function loadAuthorPage(){
+
+    const params = new URLSearchParams(window.location.search);
+
+    const authorName =
+        params.get("name") || "Jane Austen";
+
+    document.getElementById("authorName").innerText =
+    authorName;
+
+    document.getElementById("booksTitle").innerText =
+    authorName + "'s Books";
+
+    document.title =
+    authorName + " | BookSphere";
+
+    await loadAuthorInfo(authorName);
+    await loadAuthorBooks(authorName);
+}
+
+/* =====================================
+   AUTHOR INFO
+===================================== */
+
+async function loadAuthorInfo(name){
+
+    try{
+
+        const wiki = await fetch(
+            `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(name)}`
+        );
+
+        const data = await wiki.json();
+
+        if(data.thumbnail?.source){
+
+            document.getElementById("authorPhoto").src =
+            data.thumbnail.source;
+        }
+
+        if(data.extract){
+
+            document.getElementById("authorBio").innerText =
+            data.extract.split(". ").slice(0,3).join(". ") + ".";
+        }
+
+    }catch(err){
+
+        document.getElementById("authorBio").innerText =
+        `${name} is featured on BookSphere.`;
+
+    }
+
+}
+
+/* =====================================
+   AUTHOR BOOKS (OPENLIBRARY)
+===================================== */
+
+async function loadAuthorBooks(author){
+
+    const grid =
+        document.getElementById("booksGrid");
+
+    grid.innerHTML =
+    `<div class="loader">Loading books...</div>`;
+
+    try{
+
+        const res = await fetch(
+            `https://openlibrary.org/search.json?author=${encodeURIComponent(author)}&limit=24`
+        );
+
+        const data = await res.json();
+
+        const books =
+            data.docs || [];
+
+        document.getElementById("bookCount").innerText =
+        books.length + " Books";
+
+        document.getElementById("resultCount").innerText =
+        books.length + " Results";
+
+        if(books.length === 0){
+
+            grid.innerHTML = `
+            <div class="empty-state">
+                No books found.
+                <p>Try another author.</p>
+            </div>`;
+
+            return;
+        }
+
+        grid.innerHTML = "";
+
+        books.forEach(book => {
+
+            const title =
+                book.title || "Unknown Title";
+
+            const img =
+                book.cover_i
+                ? `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
+                : `https://via.placeholder.com/220x290?text=No+Cover`;
+
+            const year =
+                book.first_publish_year || "N/A";
+
+            const key =
+                book.key;
+
+            grid.innerHTML += `
+
+            <a href="book.html?key=${encodeURIComponent(key)}" class="book-card">
+
+                <img src="${img}" alt="${title}">
+
+                <h3>${title}</h3>
+
+                <p>${author}</p>
+
+                <div class="meta">${year}</div>
+
+            </a>
+
+            `;
+        });
+
+    }catch(error){
+
+        grid.innerHTML = `
+        <div class="empty-state">
+            Unable to load books.
+            <p>Please try again later.</p>
+        </div>`;
+
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>

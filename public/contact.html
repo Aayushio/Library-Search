@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | BookSphere</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+body{
+    background:#f8f5ee;
+}
+
+/* =========================
+   HERO
+========================= */
+.contact-hero{
+    text-align:center;
+    padding:70px 20px 50px;
+}
+
+.contact-hero h1{
+    font-size:52px;
+    color:#7a4e1d;
+    margin-bottom:14px;
+}
+
+.contact-hero p{
+    max-width:760px;
+    margin:auto;
+    color:#666;
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* =========================
+   MAIN GRID
+========================= */
+.contact-wrap{
+    width:92%;
+    max-width:1320px;
+    margin:0 auto 70px;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    gap:32px;
+    align-items:start;
+}
+
+/* =========================
+   BOX
+========================= */
+.contact-box{
+    background:#fff;
+    border-radius:24px;
+    padding:38px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.contact-box h2{
+    font-size:42px;
+    color:#5c3b13;
+    margin-bottom:18px;
+    line-height:1.2;
+}
+
+.contact-box p{
+    color:#666;
+    font-size:18px;
+    line-height:1.8;
+    margin-bottom:18px;
+}
+
+/* =========================
+   INFO
+========================= */
+.info-item{
+    padding:18px 0;
+    border-bottom:1px solid #f1e6d6;
+}
+
+.info-item:last-child{
+    border-bottom:none;
+}
+
+.info-item h3{
+    font-size:18px;
+    color:#7a4e1d;
+    margin-bottom:6px;
+}
+
+.info-item span{
+    color:#666;
+    font-size:16px;
+}
+
+/* =========================
+   SOCIAL
+========================= */
+.social-row{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:22px;
+}
+
+.social-btn{
+    text-decoration:none;
+    padding:11px 18px;
+    border-radius:30px;
+    border:1px solid #ead7bc;
+    background:#fffaf0;
+    color:#7a4e1d;
+    font-weight:600;
+    transition:.25s;
+}
+
+.social-btn:hover{
+    background:#7a4e1d;
+    color:#fff;
+}
+
+/* =========================
+   HELP BOX
+========================= */
+.help-box{
+    margin-top:24px;
+    background:#fffaf0;
+    padding:20px;
+}
+
+.help-box h3{
+    color:#7a4e1d;
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.help-box p{
+    margin:0;
+    font-size:15px;
+    line-height:1.7;
+}
+
+/* =========================
+   FORM
+========================= */
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    padding:15px 16px;
+    border:1px solid #d8c8a8;
+    border-radius:12px;
+    background:#fff;
+    font-size:16px;
+    color:#333;
+    outline:none;
+    font-family:inherit;
+    transition:.25s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#7a4e1d;
+    box-shadow:0 0 0 4px rgba(122,78,29,.08);
+}
+
+.form-group textarea{
+    min-height:170px;
+    resize:vertical;
+}
+
+.contact-box .btn{
+    border:none;
+    cursor:pointer;
+    min-width:220px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width:992px){
+
+.contact-wrap{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.contact-hero{
+    padding:55px 18px 40px;
+}
+
+.contact-hero h1{
+    font-size:38px;
+}
+
+.contact-hero p{
+    font-size:16px;
+}
+
+.contact-box{
+    padding:26px;
+}
+
+.contact-box h2{
+    font-size:32px;
+}
+
+.contact-box p{
+    font-size:16px;
+}
+
+.contact-box .btn{
+    width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html" class="active">Contact Us</a>
+</nav>
+
+<a href="login.html" class="login-btn">Login</a>
+
+</header>
+
+
+<!-- HERO -->
+<section class="contact-hero">
+
+<h1>Contact Us</h1>
+
+<p>
+Have questions, suggestions or partnership ideas?
+We’d love to hear from you. Reach out to the BookSphere team anytime.
+</p>
+
+</section>
+
+
+<!-- MAIN -->
+<section class="contact-wrap">
+
+<!-- LEFT -->
+<div class="contact-box">
+
+<h2>Get In Touch</h2>
+
+<p>
+We usually reply within 24 hours. Whether you're a student, reader or publisher,
+our team is here to help.
+</p>
+
+<div class="info-item">
+<h3>Email</h3>
+<span>support@booksphere.com</span>
+</div>
+
+<div class="info-item">
+<h3>Phone</h3>
+<span>+91 98765 43210</span>
+</div>
+
+<div class="info-item">
+<h3>Office</h3>
+<span>Punjab, India</span>
+</div>
+
+<div class="info-item">
+<h3>Working Hours</h3>
+<span>Monday - Saturday | 9:00 AM - 6:00 PM</span>
+</div>
+
+<div class="help-box">
+<h3>Need Fast Support?</h3>
+<p>Use the contact form and choose your subject clearly for faster response.</p>
+</div>
+
+</div>
+
+
+<!-- RIGHT -->
+<div class="contact-box">
+
+<h2>Send Message</h2>
+
+<form>
+
+<div class="form-group">
+<input type="text" placeholder="Your Full Name" required>
+</div>
+
+<div class="form-group">
+<input type="email" placeholder="Your Email Address" required>
+</div>
+
+<div class="form-group">
+<input type="text" placeholder="Subject" required>
+</div>
+
+<div class="form-group">
+<textarea placeholder="Write your message..." required></textarea>
+</div>
+
+<button type="submit" class="btn">Send Message</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-box">
+<h3>Quick Links</h3>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</div>
+
+<div class="footer-box">
+<h3>Support</h3>
+<a href="#">Help Center</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Terms</a>
+<a href="#">FAQs</a>
+</div>
+
+<div class="footer-box">
+<h3>Connect</h3>
+<a href="#">Instagram</a>
+<a href="#">LinkedIn</a>
+<a href="#">Twitter</a>
+<a href="#">Facebook</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+
+</footer>
+
+</body>
+</html>

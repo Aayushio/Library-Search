@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BookSphere | Book</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+
+/* PAGE */
+
+.book-wrapper{
+    width:92%;
+    max-width:1400px;
+    margin:50px auto;
+}
+
+#app{
+    margin-bottom:60px;
+}
+
+/* BOOK HERO */
+
+.book-page{
+    background:#fff;
+    border-radius:24px;
+    padding:40px;
+    box-shadow:0 12px 28px rgba(0,0,0,.06);
+}
+
+.book-grid{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:40px;
+}
+
+.book-cover{
+    width:100%;
+    border-radius:18px;
+    box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+
+.book-title{
+    font-size:42px;
+    color:#5c3b13;
+    margin-bottom:12px;
+}
+
+.book-author{
+    font-size:18px;
+    color:#666;
+    margin-bottom:18px;
+}
+
+.book-author a{
+    color:#7a4e1d;
+    font-weight:600;
+}
+
+.book-desc{
+    color:#555;
+    line-height:1.8;
+    margin-bottom:24px;
+}
+
+.meta-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-bottom:26px;
+}
+
+.meta-card{
+    background:#f8f5ee;
+    padding:14px;
+    border-radius:14px;
+}
+
+.meta-card span{
+    display:block;
+    color:#777;
+    font-size:13px;
+}
+
+.meta-card strong{
+    color:#333;
+    font-size:15px;
+}
+
+.book-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+/* RELATED */
+
+.section-head{
+    margin-bottom:20px;
+}
+
+.section-head h2{
+    font-size:30px;
+    color:#5c3b13;
+}
+
+.book-row{
+    display:flex;
+    gap:22px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.book-row::-webkit-scrollbar{
+    display:none;
+}
+
+.book-card{
+    min-width:190px;
+    background:#fff;
+    padding:14px;
+    border-radius:18px;
+    text-align:center;
+    color:#222;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.book-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:14px;
+    margin-bottom:10px;
+}
+
+.book-card h4{
+    font-size:17px;
+    margin-bottom:6px;
+}
+
+.book-card p{
+    color:#777;
+    font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.book-grid{
+    grid-template-columns:1fr;
+}
+
+.book-cover{
+    max-width:320px;
+    margin:auto;
+}
+
+.book-title{
+    font-size:34px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">BookSphere</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="aboutus.html">About Us</a>
+<a href="contact.html">Contact Us</a>
+</nav>
+
+<a href="login.html" class="login-btn">Login</a>
+
+</header>
+
+
+<div class="book-wrapper">
+
+<div id="app"></div>
+
+<!-- RELATED -->
+<div class="section-head">
+<h2>Readers Also Liked</h2>
+</div>
+
+<div class="book-row" id="relatedBooks"></div>
+
+</div>
+
+
+<footer class="footer">
+
+<div class="footer-bottom">
+© 2026 BookSphere | All Rights Reserved
+</div>
+
+</footer>
+
+<script src="js/book.js"></script>
+
+</body>
+</html>
