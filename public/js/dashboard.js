@@ -97,25 +97,24 @@ function renderAuthors(id){
 
     container.innerHTML = `
     <div class="book-card">
-        <img src="https://via.placeholder.com/220x280">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400" alt="James Clear">
         <h4>James Clear</h4>
         <p>Self Growth</p>
     </div>
 
     <div class="book-card">
-        <img src="https://via.placeholder.com/220x280">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400" alt="Jane Austen">
         <h4>Jane Austen</h4>
         <p>Classic Author</p>
     </div>
 
     <div class="book-card">
-        <img src="https://via.placeholder.com/220x280">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400" alt="Paulo Coelho">
         <h4>Paulo Coelho</h4>
         <p>Motivation</p>
     </div>
     `;
 }
-
 /* ==========================================
    HERO SLIDER
 ========================================== */
