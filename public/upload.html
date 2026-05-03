@@ -292,6 +292,10 @@ Add your latest title. Once submitted, it will appear in the
 <textarea id="desc" placeholder="Short Description"></textarea>
 </div>
 
+<div>
+    <input type="file" id="pdf" accept="application/pdf" required>
+</div>
+
 <div class="full actions">
 <button type="submit" class="btn">Upload Book</button>
 <button type="reset" class="secondary-btn">Reset Form</button>
@@ -354,6 +358,7 @@ Add your latest title. Once submitted, it will appear in the
 </footer>
 
 
+<!-- ONLY SCRIPT PART UPDATED BELOW -->
 <script>
 
 /* =========================
@@ -387,10 +392,14 @@ onerror="this.src='https://via.placeholder.com/230x280?text=No+Cover'">
 
 <h3>${book.title}</h3>
 
-<p>${book.year.slice(0,4)} • ${book.genre}</p>
+<p>${book.year?.slice(0,4)} • ${book.genre}</p>
+
+<a href="${book.pdf}" target="_blank" class="secondary-btn" style="margin-bottom:10px;display:block;text-align:center;">
+Read PDF
+</a>
 
 <button class="delete-book"
-onclick="deleteBook(${book.id})">
+onclick="deleteBook('${book._id}')">
 Delete
 </button>
 
@@ -408,29 +417,37 @@ slider.innerHTML = "<p class='empty'>Unable to load books.</p>";
 }
 
 /* =========================
-   UPLOAD BOOK
+   UPLOAD BOOK (FIXED)
 ========================= */
 document.getElementById("uploadForm")
 .addEventListener("submit", async function(e){
 
 e.preventDefault();
 
-const data = {
-title: document.getElementById("title").value.trim(),
-genre: document.getElementById("genre").value.trim(),
-year: document.getElementById("year").value,
-image: document.getElementById("image").value.trim(),
-desc: document.getElementById("desc").value.trim()
-};
+/* 🔥 IMPORTANT CHANGE: USING FORMDATA */
+const formData = new FormData();
+
+formData.append("title", document.getElementById("title").value.trim());
+formData.append("genre", document.getElementById("genre").value.trim());
+formData.append("year", document.getElementById("year").value);
+formData.append("image", document.getElementById("image").value.trim());
+formData.append("desc", document.getElementById("desc").value.trim());
+
+/* PDF FILE */
+const pdfFile = document.getElementById("pdf").files[0];
+
+if(!pdfFile){
+alert("Please upload a PDF file");
+return;
+}
+
+formData.append("pdf", pdfFile);
 
 try{
 
 const res = await fetch("/api/books/add",{
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body: JSON.stringify(data)
+body: formData
 });
 
 const result = await res.json();
@@ -481,6 +498,5 @@ alert("Delete failed.");
 loadBooks();
 
 </script>
-
 </body>
 </html>

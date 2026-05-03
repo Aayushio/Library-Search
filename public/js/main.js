@@ -443,7 +443,7 @@ async function loadRelatedBooks(data) {
     try {
 
         const res = await fetch(
-            `https://openlibrary.org/search.json?q=${encodeURIComponent(data.title)}&limit=6`
+            `https://openlibrary.org/search.+?q=${encodeURIComponent(data.title)}&limit=6`
         );
 
         const json = await res.json();
@@ -501,3 +501,23 @@ ${text}
 `;
 
 }
+// dash board name
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const userRaw = localStorage.getItem("booksphere_user");
+
+    if (userRaw) {
+        try {
+            const user = JSON.parse(userRaw);
+
+            const name = user.name || "User";
+
+            document.getElementById("dashboardName").innerText = name + " Dashboard";
+
+        } catch (e) {
+            console.log("Error reading user");
+        }
+    }
+
+});
