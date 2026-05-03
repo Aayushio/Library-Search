@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs");
+const multer = require("multer");
 
 dotenv.config();
 
@@ -20,12 +21,8 @@ const PUBLIC = path.join(__dirname, "public");
 ========================================== */
 
 mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-    console.log("✅ MongoDB Connected");
-})
-.catch((err) => {
-    console.log("❌ MongoDB Error:", err);
-});
+.then(() => console.log("✅ MongoDB Connected"))
+.catch(err => console.log("❌ MongoDB Error:", err));
 
 /* ==========================================
    MODELS
@@ -33,15 +30,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 const userSchema = new mongoose.Schema({
     name: String,
-    email: {
-        type: String,
-        unique: true
-    },
+    email: { type: String, unique: true },
     password: String,
-    role: {
-        type: String,
-        default: "reader"
-    }
+    role: { type: String, default: "reader" }
 }, { timestamps: true });
 
 const bookSchema = new mongoose.Schema({
@@ -49,11 +40,33 @@ const bookSchema = new mongoose.Schema({
     genre: String,
     year: String,
     image: String,
-    desc: String
+    desc: String,
+    pdf: String   // 🔥 NEW FIELD
 }, { timestamps: true });
 
 const User = mongoose.model("User", userSchema);
 const Book = mongoose.model("Book", bookSchema);
+
+/* ==========================================
+   MULTER SETUP (FILE UPLOAD)
+========================================== */
+
+// create uploads folder if not exists
+const uploadDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+}
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "-" + file.originalname);
+    }
+});
+
+const upload = multer({ storage });
 
 /* ==========================================
    MIDDLEWARE
@@ -63,23 +76,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(PUBLIC));
 
+// serve uploaded PDFs
+app.use("/uploads", express.static("uploads"));
+
 /* ==========================================
    PAGE ROUTES
 ========================================== */
 
 const pages = [
-    "index",
-    "login",
-    "signup",
-    "dashboard",
-    "admin",
-    "upload",
-    "leaderboard",
-    "book",
-    "author",
-    "search",
-    "aboutus",
-    "contact"
+    "index","login","signup","dashboard","admin",
+    "upload","leaderboard","book","author",
+    "search","aboutus","contact"
 ];
 
 pages.forEach(page => {
@@ -103,44 +110,29 @@ app.post("/api/signup", async (req, res) => {
         const { name, email, password, role } = req.body;
 
         if (!name || !email || !password) {
-            return res.json({
-                success: false,
-                message: "Please fill all fields"
-            });
+            return res.json({ success: false, message: "Please fill all fields" });
         }
 
         const exists = await User.findOne({ email });
 
         if (exists) {
-            return res.json({
-                success: false,
-                message: "Email already exists"
-            });
+            return res.json({ success: false, message: "Email already exists" });
         }
 
         const newUser = await User.create({
-            name,
-            email,
-            password,
-            role: role || "reader"
+            name, email, password, role: role || "reader"
         });
 
         res.json({
             success: true,
             message: "Signup successful",
-            redirect:
-                newUser.role === "author"
-                    ? "admin.html"
-                    : "dashboard.html"
+            redirect: newUser.role === "author"
+                ? "admin.html"
+                : "dashboard.html"
         });
 
     } catch (error) {
-
-        res.json({
-            success: false,
-            message: "Signup failed"
-        });
-
+        res.json({ success: false, message: "Signup failed" });
     }
 
 });
@@ -155,10 +147,7 @@ app.post("/api/login", async (req, res) => {
 
         const { email, password } = req.body;
 
-        const user = await User.findOne({
-            email,
-            password
-        });
+        const user = await User.findOne({ email, password });
 
         if (!user) {
             return res.json({
@@ -170,20 +159,14 @@ app.post("/api/login", async (req, res) => {
         res.json({
             success: true,
             message: "Login successful",
-            redirect:
-                user.role === "author"
-                    ? "admin.html"
-                    : "dashboard.html",
+            redirect: user.role === "author"
+                ? "admin.html"
+                : "dashboard.html",
             user
         });
 
     } catch (error) {
-
-        res.json({
-            success: false,
-            message: "Login failed"
-        });
-
+        res.json({ success: false, message: "Login failed" });
     }
 
 });
@@ -193,18 +176,15 @@ app.post("/api/login", async (req, res) => {
 ========================================== */
 
 app.get("/api/users", async (req, res) => {
-
     const users = await User.find();
-
     res.json(users);
-
 });
 
 /* ==========================================
-   ADD BOOK
+   ADD BOOK (PDF UPLOAD ENABLED)
 ========================================== */
 
-app.post("/api/books/add", async (req, res) => {
+app.post("/api/books/add", upload.single("pdf"), async (req, res) => {
 
     try {
 
@@ -217,12 +197,15 @@ app.post("/api/books/add", async (req, res) => {
             });
         }
 
+        const pdfPath = req.file ? `/uploads/${req.file.filename}` : "";
+
         await Book.create({
             title,
             genre,
             year,
             image,
-            desc
+            desc,
+            pdf: pdfPath
         });
 
         res.json({
@@ -231,6 +214,8 @@ app.post("/api/books/add", async (req, res) => {
         });
 
     } catch (error) {
+
+        console.log(error);
 
         res.json({
             success: false,
@@ -254,12 +239,22 @@ app.get("/api/books", async (req, res) => {
 });
 
 /* ==========================================
-   DELETE BOOK
+   DELETE BOOK + PDF DELETE
 ========================================== */
 
 app.delete("/api/books/:id", async (req, res) => {
 
     try {
+
+        const book = await Book.findById(req.params.id);
+
+        // delete PDF file from server
+        if (book && book.pdf) {
+            const filePath = path.join(__dirname, book.pdf);
+            if (fs.existsSync(filePath)) {
+                fs.unlinkSync(filePath);
+            }
+        }
 
         await Book.findByIdAndDelete(req.params.id);
 
